@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+	    <link rel="stylesheet" href="../css/mui.min.css">
+	    <style type="text/css">
+	    	 .title{
+			  	margin: 35px 15px 10px;
+			 }
+			 .title .content{
+			  	margin: 10px 15px 35px;
+			  	color: #bbb;
+			  	text-indent: 1em;
+			  	font-size: 14px;
+			  	line-height: 24px;
+			 }
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">经营类型</h1>
+		</header>
+	    <div class="mui-content">
+		    <form class="mui-input-group" id="select_list">
+			    <div class="mui-input-row mui-radio">
+				<label>普通住宅</label>
+			        <input name="style" type="radio" checked value="1">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>酒店公寓</label>
+					<input name="style" type="radio" value="2">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>家庭旅馆</label>
+					<input name="style" type="radio" value="3">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>经济酒店</label>
+					<input name="style" type="radio" value="4">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>主题旅馆</label>
+					<input name="style" type="radio" value="5">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>宾馆</label>
+					<input name="style" type="radio" value="6">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>客栈</label>
+					<input name="style" type="radio" value="7">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>农家院</label>
+					<input name="style" type="radio" value="8">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>精品酒店</label>
+					<input name="style" type="radio" value="9">
+				</div>	
+				<div class="mui-input-row mui-radio">
+					<label>其他</label>
+					<input name="style" type="radio" value="10">
+				</div>						
+		    </form>
+		</div>
+	    <script src="../js/mui.min.js"></script>
+	    <script>
+	        var callPage = null;
+	        function onRadioClicked(e) {
+	        	console.log("radion clicked");
+	        	console.log(e.target.getAttribute("value"));
+	        	if (!callPage) {
+	        		callPage = plus.webview.getWebviewById('public_sea.html'); 
+	        	}
+                mui.fire(callPage,'newPageSelect',{
+                    value:e.target.getAttribute("value")
+                });	        	
+                mui.openWindow({
+                	url:"public_sea.html",
+                	id:"public_sea.html"
+                });
+	        }
+	        mui.ready(function(){
+	        	mui('#select_list').on('tap', 'input[type=radio]',onRadioClicked);
+	        });
+	        mui.plusReady(function() {
+	            callPage = plus.webview.getWebviewById('public_sea.html');   
+			});
+	    </script>
+	</body>
+
+</html>
